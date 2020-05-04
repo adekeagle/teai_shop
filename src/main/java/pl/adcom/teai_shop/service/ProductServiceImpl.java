@@ -32,10 +32,9 @@ public class ProductServiceImpl implements ProductService {
     public BigDecimal totalPrice() {
         BigDecimal result = new BigDecimal(0.00);
 
-        for (Product product: productList) {
-            result = result.add(product.getPrice());
-        }
-        return result.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal sum = productList.stream().map(Product::getPrice).reduce(result, BigDecimal::add);
+
+        return sum.setScale(2, RoundingMode.HALF_UP);
     }
 
     @Override
