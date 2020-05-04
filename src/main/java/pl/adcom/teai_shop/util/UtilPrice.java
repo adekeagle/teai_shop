@@ -3,7 +3,7 @@ package pl.adcom.teai_shop.util;
 import java.math.BigDecimal;
 import java.util.Random;
 
-public class Price {
+public class UtilPrice {
 
     public static Double randomPrice(){
         Random random = new Random();

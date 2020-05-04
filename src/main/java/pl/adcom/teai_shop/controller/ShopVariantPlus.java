@@ -1,5 +1,7 @@
-package pl.adcom.teai_shop.possibility;
+package pl.adcom.teai_shop.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -12,7 +14,9 @@ import java.math.BigDecimal;
 
 @Component
 @Profile("Plus")
-public class Plus {
+public class ShopVariantPlus {
+
+    Logger logger = LoggerFactory.getLogger(ShopVariantPlus.class);
 
     @Value("${info.tax}")
     private BigDecimal tax;
@@ -20,19 +24,21 @@ public class Plus {
     private ProductService productService;
 
     @Autowired
-    public Plus(ProductService productService) {
+    public ShopVariantPlus(ProductService productService) {
         this.productService = productService;
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void getInfo(){
-        System.out.println("Variant Plus");
-        System.out.println("Wartość netto w koszyku: " + productService.totalPrice() + " zł");
-        System.out.println("Dodaję 1 produkt do koszyka w cenie 80.00 zł netto");
+        logger.info("Variant Plus");
+        logger.info("Wartość netto w koszyku: " + productService.totalPrice() + " zł");
+        logger.info("Dodaję 1 produkt do koszyka w cenie 80.00 zł netto");
+
         productService.addProductToBasket("Akcesoria do drukarki", new BigDecimal(80.0));
-        System.out.println("Produkt został dodany");
-        System.out.println("Wartość netto koszyka wynosi: " + productService.totalPrice() + " zł");
-        System.out.println("Wartość brutto koszyka wynosi: " + getPriceWithVat(productService.totalPrice()) + " zł");
+
+        logger.info("Produkt został dodany");
+        logger.info("Wartość netto koszyka wynosi: " + productService.totalPrice() + " zł");
+        logger.info("Wartość brutto koszyka wynosi: " + getPriceWithVat(productService.totalPrice()) + " zł");
     }
 
     private BigDecimal getPriceWithVat(BigDecimal price){

@@ -2,7 +2,7 @@ package pl.adcom.teai_shop.service;
 
 import org.springframework.stereotype.Service;
 import pl.adcom.teai_shop.model.Product;
-import pl.adcom.teai_shop.util.Price;
+import pl.adcom.teai_shop.util.UtilPrice;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -16,11 +16,11 @@ public class ProductServiceImpl implements ProductService {
 
     public ProductServiceImpl() {
         productList = new ArrayList<>();
-        productList.add(new Product("Toner", new BigDecimal(Price.randomPrice())));
-        productList.add(new Product("Drukarka Canon", new BigDecimal(Price.randomPrice())));
-        productList.add(new Product("Przewód USB", new BigDecimal(Price.randomPrice())));
-        productList.add(new Product("Papier", new BigDecimal(Price.randomPrice())));
-        productList.add(new Product("Drukarka HP", new BigDecimal(Price.randomPrice())));
+        productList.add(new Product("Toner", new BigDecimal(UtilPrice.randomPrice())));
+        productList.add(new Product("Drukarka Canon", new BigDecimal(UtilPrice.randomPrice())));
+        productList.add(new Product("Przewód USB", new BigDecimal(UtilPrice.randomPrice())));
+        productList.add(new Product("Papier", new BigDecimal(UtilPrice.randomPrice())));
+        productList.add(new Product("Drukarka HP", new BigDecimal(UtilPrice.randomPrice())));
     }
 
     @Override
